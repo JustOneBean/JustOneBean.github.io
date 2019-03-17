@@ -78,7 +78,7 @@
 <meta name="description" content="业精于勤，荒于嬉；行成于思，毁于随。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="JustOneBean">
-<meta property="og:url" content="http://yoursite.com/categories/android/index.html">
+<meta property="og:url" content="http://justonebean.github.io/categories/Android/index.html">
 <meta property="og:site_name" content="JustOneBean">
 <meta property="og:description" content="业精于勤，荒于嬉；行成于思，毁于随。">
 <meta property="og:locale" content="zh-Hans">
@@ -114,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/android/">
+  <link rel="canonical" href="http://justonebean.github.io/categories/Android/">
 
 
 
 
 
-  <title>分类: android | JustOneBean</title>
+  <title>分类: Android | JustOneBean</title>
   
 
 
@@ -282,7 +282,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>android<small>分类</small>
+        <h1>Android<small>分类</small>
         </h1>
       </div>
 
@@ -294,17 +294,69 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/07/25/Android的Activities四种启动模式/" itemprop="url">
+            <a class="post-title-link" href="/2018/09/26/使用泛型简化findViewById/" itemprop="url">
               
-                <span itemprop="name">Android的Activities四种启动模式</span>
+                <span itemprop="name">使用泛型简化findViewById</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-07-25T00:00:00+08:00" content="2018-07-25">
-          07-25
+        <time class="post-time" itemprop="dateCreated" datetime="2018-09-26T00:00:00+08:00" content="2018-09-26">
+          09-26
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/05/12/EditText显示明文与密码/" itemprop="url">
+              
+                <span itemprop="name">EditText显示明文与密码</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-05-12T00:00:00+08:00" content="2018-05-12">
+          05-12
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/04/19/Android拍照，适配到Android7.0/" itemprop="url">
+              
+                <span itemprop="name">Android拍照，适配到Android7.0</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-04-19T00:00:00+08:00" content="2018-04-19">
+          04-19
         </time>
       </div>
 
@@ -876,74 +928,6 @@
               })
               searchResultList += "</ul>";
               resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-innerHTML = searchResultList;
             }
           }
 
