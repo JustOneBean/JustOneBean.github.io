@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="android,adb,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一些实用的命令发送广播关闭USB1adb shell am broadcast -a android.hardware.usb.action.USB_STATE --ez connected &quot;false&quot;">
+<meta name="keywords" content="android,adb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android的adb调试命令集合">
+<meta property="og:url" content="http://justonebean.github.io/2018/03/17/Android的adb调试命令集合/index.html">
+<meta property="og:site_name" content="JustOneBean">
+<meta property="og:description" content="一些实用的命令发送广播关闭USB1adb shell am broadcast -a android.hardware.usb.action.USB_STATE --ez connected &quot;false&quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-04T09:29:06.347Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android的adb调试命令集合">
+<meta name="twitter:description" content="一些实用的命令发送广播关闭USB1adb shell am broadcast -a android.hardware.usb.action.USB_STATE --ez connected &quot;false&quot;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://justonebean.github.io/2018/03/17/Android的adb调试命令集合/">
+
+
+
+
+
+  <title>Android的adb调试命令集合 | JustOneBean</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JustOneBean</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://justonebean.github.io/2018/03/17/Android的adb调试命令集合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一颗豆豆">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JustOneBean">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android的adb调试命令集合</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T00:00:00+08:00">
+                2018-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一些实用的命令"><a href="#一些实用的命令" class="headerlink" title="一些实用的命令"></a>一些实用的命令</h2><h3 id="发送广播关闭USB"><a href="#发送广播关闭USB" class="headerlink" title="发送广播关闭USB"></a>发送广播关闭USB</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am broadcast -a android.hardware.usb.action.USB_STATE --ez connected "false"</span><br></pre></td></tr></table></figure>
+ <a id="more"></a>
+<h3 id="关闭gyroscope-陀螺仪"><a href="#关闭gyroscope-陀螺仪" class="headerlink" title="关闭gyroscope(陀螺仪)"></a>关闭gyroscope(陀螺仪)</h3><blockquote>
+<p>硬件相关，可能有变动</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell echo 0 &gt; /sys/class/sensors/bmg160/enable</span><br></pre></td></tr></table></figure>
+<h3 id="无线adb连接手机"><a href="#无线adb连接手机" class="headerlink" title="无线adb连接手机"></a>无线adb连接手机</h3><p>Connect the device to the computer with a USB cable → The computer recognize the device</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<p>Make sure device’s Wifi is ON, and set device’s tcpip port → To change the adb port</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb tcpip 12443</span><br></pre></td></tr></table></figure>
+<p>Write down the device IP (Connect to wifi):<br>   Go to settings → about phone → Status → IP address<br>Example: 192.168.8.81</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb connect 192.168.8.81:12443</span><br></pre></td></tr></table></figure>
+<p>Disconnect the cable</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb disconnect 192.168.8.81:12443</span><br></pre></td></tr></table></figure>
+<h3 id="查看系统时间"><a href="#查看系统时间" class="headerlink" title="查看系统时间"></a>查看系统时间</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell date</span><br></pre></td></tr></table></figure>
+<h3 id="开机跳过setupWizard正常使用"><a href="#开机跳过setupWizard正常使用" class="headerlink" title="开机跳过setupWizard正常使用"></a>开机跳过setupWizard正常使用</h3><h4 id="disable-SetupWizard"><a href="#disable-SetupWizard" class="headerlink" title="disable SetupWizard:"></a>disable SetupWizard:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages | grep setup</span><br><span class="line">adb shell pm disable</span><br></pre></td></tr></table></figure>
+<p>→ Example: com.google.android.setupwizard</p>
+<h4 id="build-Provision-and-push-into-handset"><a href="#build-Provision-and-push-into-handset" class="headerlink" title="build Provision and push into handset:"></a>build Provision and push into handset:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mmm packages/apps/Provision/</span><br><span class="line">adb push out/target/product/flash3/system/app/Provision/Provision.apk /system/app/Provision/</span><br></pre></td></tr></table></figure>
+<h4 id="reboot"><a href="#reboot" class="headerlink" title="reboot"></a>reboot</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb reboot</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Provision就是无界面版的SetupWizard，快速设置并初始化手机，是SetupWizard的替代版。</p>
+</blockquote>
+<p>可断开USB还执行adb命令，例如通过如下命令记录event log到sdcard</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell "getevent -ltr &gt; sdcard/getevent.log&amp;"  (linux common function)</span><br></pre></td></tr></table></figure>
+<p>在执行此命令之后可拔掉USB进行测试</p>
+<h3 id="查看Notification：“找出状态栏广告的主人”"><a href="#查看Notification：“找出状态栏广告的主人”" class="headerlink" title="查看Notification：“找出状态栏广告的主人”"></a>查看Notification：“找出状态栏广告的主人”</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys statusbar</span><br></pre></td></tr></table></figure>
+<h2 id="debug相关的命令"><a href="#debug相关的命令" class="headerlink" title="debug相关的命令"></a>debug相关的命令</h2><h3 id="过滤log篇"><a href="#过滤log篇" class="headerlink" title="过滤log篇"></a>过滤log篇</h3><h4 id="只查看某个TAG的某个priority的log："><a href="#只查看某个TAG的某个priority的log：" class="headerlink" title="只查看某个TAG的某个priority的log："></a>只查看某个TAG的某个priority的log：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat ActivityManager:I MyApp:D *:S</span><br></pre></td></tr></table></figure>
+<p><code>*:S</code>: sets the priority level for all tags to “silent”, thus ensuring only log messages with “ActivityManager” and “MyApp” are displayed.</p>
+<h4 id="只显示Error级别的log："><a href="#只显示Error级别的log：" class="headerlink" title="只显示Error级别的log："></a>只显示Error级别的log：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat *:E</span><br></pre></td></tr></table></figure>
+<h4 id="直接看Exception的命令："><a href="#直接看Exception的命令：" class="headerlink" title="直接看Exception的命令："></a>直接看Exception的命令：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat -s */E</span><br></pre></td></tr></table></figure>
+<h4 id="logcat时可以查看某个tag的所有log"><a href="#logcat时可以查看某个tag的所有log" class="headerlink" title="logcat时可以查看某个tag的所有log:"></a>logcat时可以查看某个tag的所有log:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat -v threadtime -s [TAG]</span><br></pre></td></tr></table></figure>
+<h4 id="打开某个class的log："><a href="#打开某个class的log：" class="headerlink" title="打开某个class的log："></a>打开某个class的log：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell setprop log.tag.MyAppTag VERBOSE</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>or:<br>  Creating a local.prop file as described in the original question:<br>  log.tag.MY_TAG=VERBOSE</p>
+<p>  And then pushing it onto the device as follows seems to do the trick:<br>  adb push local.prop /data/local.prop<br>  adb shell chmod 644 /data/local.prop<br>  adb shell chown root.root /data/local.prop<br>  adb reboot</p>
+<p>You can double check to make sure that the values in local.prop were read by executing:<br>adb shell getprop | grep log.tag</p>
+</blockquote>
+<h4 id="抓取kernel-log："><a href="#抓取kernel-log：" class="headerlink" title="抓取kernel log："></a>抓取kernel log：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /proc/kmsg &gt; kernel.log</span><br></pre></td></tr></table></figure>
+<h3 id="强制让进程gc"><a href="#强制让进程gc" class="headerlink" title="强制让进程gc"></a>强制让进程gc</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell kill -10 PIDXXX</span><br></pre></td></tr></table></figure>
+<h3 id="强制生成trace"><a href="#强制生成trace" class="headerlink" title="强制生成trace"></a>强制生成trace</h3><blockquote>
+<p>/data/anr/traces.txt</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell kill -3 PIDxxx</span><br></pre></td></tr></table></figure>
+<h3 id="强制生成进程的内存镜像"><a href="#强制生成进程的内存镜像" class="headerlink" title="强制生成进程的内存镜像"></a>强制生成进程的内存镜像</h3><blockquote>
+<p>分析OOM</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am dumpheap PIDxxx /data/xxx.hprof</span><br></pre></td></tr></table></figure>
+<h3 id="打印调用顺序"><a href="#打印调用顺序" class="headerlink" title="打印调用顺序"></a>打印调用顺序</h3><blockquote>
+<p>在java代码中加入，可知道该函数被谁调用</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debug.getCallers(4)</span><br></pre></td></tr></table></figure>
+<h3 id="top命令"><a href="#top命令" class="headerlink" title="top命令"></a>top命令</h3><blockquote>
+<p>每隔1秒执行top命令显示10行数据，能够实时查看后台哪些进程或者线程在执 行，消耗cpu</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell top -d 1 -m 10 -t</span><br></pre></td></tr></table></figure>
+<h3 id="软重新启动"><a href="#软重新启动" class="headerlink" title="软重新启动"></a>软重新启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell stop; adb shell start</span><br></pre></td></tr></table></figure>
+<h3 id="monkey-test的命令"><a href="#monkey-test的命令" class="headerlink" title="monkey test的命令"></a>monkey test的命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell monkey -v -p [package name] [times]</span><br><span class="line">adb shell monkey -v -p com.jrdcom.lockscreen 1000000</span><br></pre></td></tr></table></figure>
+<h3 id="查看cpu频率"><a href="#查看cpu频率" class="headerlink" title="查看cpu频率"></a>查看cpu频率</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq</span><br><span class="line">adb shell cat /sys/devices/system/cpu/cpu1/cpufreq/scaling_cur_freq</span><br><span class="line">adb shell cat /sys/devices/system/cpu/cpu2/cpufreq/scaling_cur_freq</span><br><span class="line">adb shell cat /sys/devices/system/cpu/cpu3/cpufreq/scaling_cur_freq</span><br></pre></td></tr></table></figure>
+<h3 id="打开CPU-loading-log"><a href="#打开CPU-loading-log" class="headerlink" title="打开CPU loading log"></a>打开CPU loading log</h3><blockquote>
+<p>分析ANR（MTK）</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell setprop events.cpu true</span><br></pre></td></tr></table></figure>
+<p>在events log中实时打印cpu信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb logcat -b events | grep cpu</span><br><span class="line">   I/cpu     (  743): [16,4,12,0,0,0]</span><br><span class="line">   I/cpu     (  743): [15,2,13,0,0,0]</span><br><span class="line">   I/cpu     (  743): [16,2,14,0,0,0]</span><br><span class="line"></span><br><span class="line">数字都是百分比，分别为：[total, user, system, iouat, irq, softlrq]</span><br></pre></td></tr></table></figure>
+<h3 id="终端输入play-pause事件模拟按键"><a href="#终端输入play-pause事件模拟按键" class="headerlink" title="终端输入play pause事件模拟按键"></a>终端输入play pause事件模拟按键</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">adb shell media</span><br><span class="line">  usage: media [subcommand] [options]</span><br><span class="line">  media dispatch KEY</span><br><span class="line">  media remote-display</span><br><span class="line"></span><br><span class="line">    media dispatch:    dispatch a media key to the current media client.</span><br><span class="line">    KEY may be:        play, pause, play-pause, mute, headsethook, stop, next, previous, rewind, recordm fast-forword.</span><br><span class="line">    media remote-display: 	 monitor remote display updates.</span><br></pre></td></tr></table></figure>
+<h2 id="系列核心命令"><a href="#系列核心命令" class="headerlink" title="系列核心命令"></a>系列核心命令</h2><h3 id="模拟输入事件"><a href="#模拟输入事件" class="headerlink" title="模拟输入事件"></a>模拟输入事件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb shell input text &lt;string&gt;   input a string to device</span><br><span class="line">adb shell input keyevent &lt;event_code&gt;   send a Key Event to device</span><br><span class="line"></span><br><span class="line">如: adb shell input keyevent 26      (PowerKey)</span><br></pre></td></tr></table></figure>
+<h3 id="模拟启动activity"><a href="#模拟启动activity" class="headerlink" title="模拟启动activity"></a>模拟启动activity</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start  &lt;INTENT&gt; : start an Activity</span><br><span class="line">如：am start -n com.android.calculator/com.android.calculator2.Calculator</span><br><span class="line">adb shell am broadcast &lt;INTENT&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="得到设置的settings数据库键值"><a href="#得到设置的settings数据库键值" class="headerlink" title="得到设置的settings数据库键值"></a>得到设置的settings数据库键值</h3><blockquote>
+<p><strong>usage:</strong> settings [–user NUM] get namespace key</p>
+<p>​                    settings [–user NUM] put namespace key value</p>
+<p>​                    settings [–user NUM] delete namespace key</p>
+<p> ‘namespace’ is one of {system, secure, global}, case-insensitive</p>
+<p>If ‘–user NUM’ is not given, the operations are performed on the owner user.</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings get/set Global airplane_mode_on</span><br></pre></td></tr></table></figure>
+<h4 id="修改数据库的键值"><a href="#修改数据库的键值" class="headerlink" title="修改数据库的键值"></a>修改数据库的键值</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put system/global [key] [value]</span><br><span class="line">adb shell settings put system navigation_bar_key_mode 1</span><br></pre></td></tr></table></figure>
+<h4 id="得到数据库的键值"><a href="#得到数据库的键值" class="headerlink" title="得到数据库的键值"></a>得到数据库的键值</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings get system/global [key]</span><br></pre></td></tr></table></figure>
+<h3 id="查看Service信息"><a href="#查看Service信息" class="headerlink" title="查看Service信息"></a>查看Service信息</h3><h4 id="查看Service列表"><a href="#查看Service列表" class="headerlink" title="查看Service列表"></a>查看Service列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell service list</span><br><span class="line">   Found 1 services:</span><br><span class="line">0 phone: [com.android.internal.telephony.ITelephony]</span><br></pre></td></tr></table></figure>
+<h4 id="检查Service是否存在"><a href="#检查Service是否存在" class="headerlink" title="检查Service是否存在"></a>检查Service是否存在</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell service check phone</span><br><span class="line">Service phone: found</span><br></pre></td></tr></table></figure>
+<h4 id="使用Service"><a href="#使用Service" class="headerlink" title="使用Service"></a>使用Service</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell service call phone 2 s16 "10086"</span><br></pre></td></tr></table></figure>
+<h3 id="手机屏幕相关设置-wm命令"><a href="#手机屏幕相关设置-wm命令" class="headerlink" title="手机屏幕相关设置-wm命令"></a>手机屏幕相关设置-wm命令</h3><blockquote>
+<p>adb shell wm</p>
+<p>usage: wm [subcommand] [options]</p>
+<p>​             wm size [reset | WxH]</p>
+<p>​             wm density [reset | DENSITY]</p>
+<p>​             wm overscan [reset | LEFT,TOP,RIGHT,BOTTOM]</p>
+</blockquote>
+<h4 id="wm-overscan-reset-LEFT-TOP-RIGHT-BOTTOM"><a href="#wm-overscan-reset-LEFT-TOP-RIGHT-BOTTOM" class="headerlink" title="wm overscan [reset|LEFT,TOP,RIGHT,BOTTOM]"></a>wm overscan [reset|LEFT,TOP,RIGHT,BOTTOM]</h4><p>wm overscan: set overscan area for display.</p>
+<p>重新设置屏幕大小、尺寸:</p>
+<p>让界面显示在靠左200，靠上300，靠右400，靠下500的显示区域</p>
+<p>width = displaywidth - left - right</p>
+<p>height = displayheight - top - bottom</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell wm overscan 200,300,400,500</span><br><span class="line">                      left,top,right,bottom</span><br></pre></td></tr></table></figure>
+<h4 id="wm-size-return-or-override-display-size"><a href="#wm-size-return-or-override-display-size" class="headerlink" title="wm size: return or override display size"></a>wm size: return or override display size</h4><p>查看屏幕分辨率</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell wm size</span><br><span class="line">    Physical size: 720x1280</span><br></pre></td></tr></table></figure>
+<h4 id="wm-density-override-display-density"><a href="#wm-density-override-display-density" class="headerlink" title="wm density: override display density"></a>wm density: override display density</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell wm density</span><br><span class="line">    Physical density: 480</span><br></pre></td></tr></table></figure>
+<p>强制设置手机dpi为320</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell wm density 320</span><br><span class="line">adb shell wm density reset</span><br></pre></td></tr></table></figure>
+<h3 id="svc命令"><a href="#svc命令" class="headerlink" title="svc命令"></a>svc命令</h3><h4 id="Turn-on-off-Wi-Fi"><a href="#Turn-on-off-Wi-Fi" class="headerlink" title="Turn on/off Wi-Fi"></a>Turn on/off Wi-Fi</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svc wifi [enable|disable]</span><br></pre></td></tr></table></figure>
+<h4 id="Turn-on-off-mobile-data"><a href="#Turn-on-off-mobile-data" class="headerlink" title="Turn on/off mobile data"></a>Turn on/off mobile data</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svc data [enable|disable]</span><br></pre></td></tr></table></figure>
+<h4 id="手机重启"><a href="#手机重启" class="headerlink" title="手机重启"></a>手机重启</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">svc power reboot [reason]</span><br><span class="line">    Perform a runtime shutdown and reboot device with specified reason.</span><br></pre></td></tr></table></figure>
+<h4 id="手机关机"><a href="#手机关机" class="headerlink" title="手机关机"></a>手机关机</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">svc power shutdown</span><br><span class="line">    Perform a runtime shutdown and power off the device.</span><br></pre></td></tr></table></figure>
+<h3 id="pm-命令大全"><a href="#pm-命令大全" class="headerlink" title="pm 命令大全"></a>pm 命令大全</h3><blockquote>
+<p>pm命令用于分析手机中apk和包名</p>
+</blockquote>
+<h4 id="查看当前安装的所有apk"><a href="#查看当前安装的所有apk" class="headerlink" title="查看当前安装的所有apk"></a>查看当前安装的所有apk</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+<h4 id="查看包名和文件名对应表"><a href="#查看包名和文件名对应表" class="headerlink" title="查看包名和文件名对应表"></a>查看包名和文件名对应表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages -f</span><br><span class="line">  package:/system/priv-app/DefaultContainerService.apk=com.android.defcontainer</span><br><span class="line">  package:/data/app/com.tencent.mm-1.apk=com.tencent.mm</span><br><span class="line">  package:/system/app/JrdGallery.apk=com.jrdcom.gallery3d</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<h4 id="查看disable-packagename"><a href="#查看disable-packagename" class="headerlink" title="查看disable packagename"></a>查看disable packagename</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages -d</span><br></pre></td></tr></table></figure>
+<h4 id="查看enable-packagename"><a href="#查看enable-packagename" class="headerlink" title="查看enable packagename"></a>查看enable packagename</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages -e</span><br></pre></td></tr></table></figure>
+<h4 id="查看system-app-packagename"><a href="#查看system-app-packagename" class="headerlink" title="查看system app packagename"></a>查看system app packagename</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages -s</span><br></pre></td></tr></table></figure>
+<h4 id="查看第三方app-packagename"><a href="#查看第三方app-packagename" class="headerlink" title="查看第三方app packagename"></a>查看第三方app packagename</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages -3</span><br></pre></td></tr></table></figure>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list features</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Enable/Disable package</span><br><span class="line">adb shell pm enable [packagename]</span><br><span class="line">adb shell pm disable [packagename]</span><br></pre></td></tr></table></figure>
+<h3 id="am-命令大全"><a href="#am-命令大全" class="headerlink" title="am 命令大全"></a>am 命令大全</h3><h4 id="强制dump某个进程的内存镜像"><a href="#强制dump某个进程的内存镜像" class="headerlink" title="强制dump某个进程的内存镜像"></a>强制dump某个进程的内存镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 1044是Launcher的pid</span><br><span class="line">adb shell am dumpheap 1044 /data/aa.hprof</span><br></pre></td></tr></table></figure>
+<h4 id="Dalvik’s-sampling-profiler-定时抓取java-call-stack"><a href="#Dalvik’s-sampling-profiler-定时抓取java-call-stack" class="headerlink" title="Dalvik’s sampling profiler 定时抓取java call stack"></a>Dalvik’s sampling profiler 定时抓取java call stack</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adb shell am profile start [--user &lt;USER_ID&gt; current] [--sampling INTERVAL] &lt;PROCESS&gt; &lt;FILE&gt;</span><br><span class="line">adb shell am profile stop [--user &lt;USER_ID&gt; current] [&lt;PROCESS&gt;]</span><br><span class="line">persist.sys.profiler_ms 		时间频率 默认0</span><br><span class="line">persist.sys.profiler_depth	 call stack depth 默认4</span><br><span class="line">抓取的文件保存于/data/snapshots/&lt;pid&gt;-&lt;time&gt;.snapshot</span><br></pre></td></tr></table></figure>
+<h4 id="List-all-of-the-activity-stacks-and-their-sizes"><a href="#List-all-of-the-activity-stacks-and-their-sizes" class="headerlink" title="List all of the activity stacks and their sizes"></a>List all of the activity stacks and their sizes</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am stack list</span><br></pre></td></tr></table></figure>
+<h4 id="Display-the-information-about-activity-stack"><a href="#Display-the-information-about-activity-stack" class="headerlink" title="Display the information about activity stack"></a>Display the information about activity stack</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am stack info &lt;STACK_ID&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="dumpsys相关命令"><a href="#dumpsys相关命令" class="headerlink" title="dumpsys相关命令"></a>dumpsys相关命令</h3><h4 id="查看activity的provider信息"><a href="#查看activity的provider信息" class="headerlink" title="查看activity的provider信息"></a>查看activity的provider信息</h4><p>查看activity每个数据库的调用信息查询 打印所有provider信息 可以查看数据库某个时间点的增删改查的次数, 监测应用的IO操作:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys activity provider all</span><br><span class="line">PROVIDER ContentProviderRecord&#123;19861e6e u0 com.android.providers.media/.MediaProvider&#125; pid=31295</span><br><span class="line">    Client:</span><br><span class="line">      internal.db: version 700, 68 rows, 0 inserts, 0 updates, 0 deletes, 120 queries,</span><br><span class="line">      1970-02-07 10:49:01.893 : Database upgraded from version 63 to 700 in 0 seconds</span><br><span class="line">												               插入62次，0次更新，0次删除，105次查询</span><br><span class="line">      1970-02-07 10:49:03.852 : internal.db: version 700, 54 rows, 62 inserts, 0 updates, 0 deletes, 105 queries, scan started Feb 7, 10:49 AM (00:02)</span><br><span class="line">      1970-02-07 10:54:06.555 : internal.db: version 700, 54 rows, 0 inserts, 0 updates, 0 deletes, 55 queries, scan started 2月7日 下午6:54 (00:00)</span><br><span class="line">      2013-12-26 05:41:19.318 : internal.db: version 700, 54 rows, 0 inserts, 4 updates, 0 deletes, 58 queries, scan started Dec 26, 1:41 PM (00:00)</span><br><span class="line">      2013-12-27 07:45:37.775 : internal.db: version 700, 59 rows, 0 inserts, 0 updates, 0 deletes, 55 queries, scan started Dec 27, 3:45 PM (00:00)</span><br></pre></td></tr></table></figure>
+<h4 id="查看provider的Connections，谁在连接数据库"><a href="#查看provider的Connections，谁在连接数据库" class="headerlink" title="查看provider的Connections，谁在连接数据库"></a>查看provider的Connections，谁在连接数据库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dumpsys activity providers</span><br></pre></td></tr></table></figure>
+<h4 id="查看手机disk状态"><a href="#查看手机disk状态" class="headerlink" title="查看手机disk状态"></a>查看手机disk状态</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys diskstats</span><br><span class="line">    &gt;&gt; Latency: 5ms [512B Data Write]</span><br><span class="line">    &gt;&gt; Data-Free: 362888K / 1161104K total = 31% free</span><br><span class="line">    &gt;&gt; Cache-Free: 116756K / 120900K total = 96% free</span><br><span class="line">    &gt;&gt; System-Free: 133036K / 806284K total = 16% free</span><br></pre></td></tr></table></figure>
+<h4 id="Get-the-list-of-services-available"><a href="#Get-the-list-of-services-available" class="headerlink" title="Get the list of services available"></a>Get the list of services available</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell service list</span><br></pre></td></tr></table></figure>
+<h4 id="查看可用的SERVICE列表"><a href="#查看可用的SERVICE列表" class="headerlink" title="查看可用的SERVICE列表"></a>查看可用的SERVICE列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys | grep 'DUMP OF SERVICE' | awk '&#123;print $4&#125;' | tr -d ':'</span><br><span class="line"></span><br><span class="line">ACTIVITY MANAGER PENDING INTENTS (adb shell dumpsys activity intents)</span><br><span class="line">ACTIVITY MANAGER BROADCAST STATE (adb shell dumpsys activity broadcasts)</span><br><span class="line">ACTIVITY MANAGER CONTENT PROVIDERS (adb shell dumpsys activity providers)</span><br><span class="line">ACTIVITY MANAGER SERVICES (adb shell dumpsys activity services)</span><br><span class="line">ACTIVITY MANAGER ACTIVITIES (adb shell dumpsys activity activities)</span><br><span class="line">ACTIVITY MANAGER RUNNING PROCESSES (adb shell dumpsys activity processes)</span><br><span class="line">INPUT MANAGER (adb shell dumpsys input)</span><br><span class="line">WINDOW MANAGER LAST ANR (adb shell dumpsys window lastanr)</span><br><span class="line">WINDOW MANAGER POLICY STATE (adb shell dumpsys window policy)</span><br><span class="line">WINDOW MANAGER SESSIONS (adb shell dumpsys window sessions)</span><br><span class="line">WINDOW MANAGER TOKENS (adb shell dumpsys window tokens)</span><br><span class="line">WINDOW MANAGER WINDOWS (adb shell dumpsys window windows)</span><br></pre></td></tr></table></figure>
+<h4 id="查看某个应用的内存使用信息"><a href="#查看某个应用的内存使用信息" class="headerlink" title="查看某个应用的内存使用信息"></a>查看某个应用的内存使用信息</h4><blockquote>
+<p>getting memory usage informations</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys meminfo 'your apps package name'</span><br><span class="line">adb shell dumpsys meminfo com.google.android.apps.maps</span><br></pre></td></tr></table></figure>
+<h4 id="查看TaskStack"><a href="#查看TaskStack" class="headerlink" title="查看TaskStack"></a>查看TaskStack</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys activity activities</span><br></pre></td></tr></table></figure>
+<h4 id="查看Alarm列表"><a href="#查看Alarm列表" class="headerlink" title="查看Alarm列表"></a>查看Alarm列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys alarm</span><br></pre></td></tr></table></figure>
+<h4 id="查看surface-flinger"><a href="#查看surface-flinger" class="headerlink" title="查看surface flinger"></a>查看surface flinger</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys SurfaceFlinger</span><br></pre></td></tr></table></figure>
+<h4 id="dumpsys其他一些信息"><a href="#dumpsys其他一些信息" class="headerlink" title="dumpsys其他一些信息"></a>dumpsys其他一些信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys SurfaceFlinger | grep "Layer\|z="</span><br><span class="line">adb shell dumpsys activity log a on</span><br><span class="line">adb shell dumpsys window -d enable 26</span><br><span class="line">adb shell dumpsys alarm log on</span><br><span class="line">adb shell dumpsys alarm log off</span><br><span class="line">adb shell dumpsys window policy</span><br><span class="line">adb shell dumpsys activity log anr 2   可以打开anr的messagequeue</span><br><span class="line">adb shell dumpsys activity a           查看activity详细信息，如显示大小，布局等等</span><br><span class="line">adb shell dumpsys activity processes   进程信息 trimmemory</span><br><span class="line">adb shell dumpsys activity recents</span><br><span class="line">adb shell dumpsys activity broadcasts  可以查看前台和后台broadcast详细信息(发送时间，</span><br><span class="line">                                       所有应用处理时间，监听广播的所有列表)</span><br><span class="line">adb shell dumpsys activity intents</span><br><span class="line">adb shell dumpsys activity oom</span><br><span class="line">adb shell dumpsys input | grep Focus   查看焦点窗口</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    一颗豆豆
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://justonebean.github.io/2018/03/17/Android的adb调试命令集合/" title="Android的adb调试命令集合">http://justonebean.github.io/2018/03/17/Android的adb调试命令集合/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android-adb/" rel="tag"><i class="fa fa-tag"></i> android,adb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/17/git使用笔记/" rel="prev" title="Git使用笔记">
+                Git使用笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="一颗豆豆">
+            
+              <p class="site-author-name" itemprop="name">一颗豆豆</p>
+              <p class="site-description motion-element" itemprop="description">业精于勤，荒于嬉；行成于思，毁于随。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/JustOneBean" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:justonebean@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些实用的命令"><span class="nav-number">1.</span> <span class="nav-text">一些实用的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送广播关闭USB"><span class="nav-number">1.1.</span> <span class="nav-text">发送广播关闭USB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭gyroscope-陀螺仪"><span class="nav-number">1.2.</span> <span class="nav-text">关闭gyroscope(陀螺仪)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无线adb连接手机"><span class="nav-number">1.3.</span> <span class="nav-text">无线adb连接手机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看系统时间"><span class="nav-number">1.4.</span> <span class="nav-text">查看系统时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机跳过setupWizard正常使用"><span class="nav-number">1.5.</span> <span class="nav-text">开机跳过setupWizard正常使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#disable-SetupWizard"><span class="nav-number">1.5.1.</span> <span class="nav-text">disable SetupWizard:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#build-Provision-and-push-into-handset"><span class="nav-number">1.5.2.</span> <span class="nav-text">build Provision and push into handset:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reboot"><span class="nav-number">1.5.3.</span> <span class="nav-text">reboot</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看Notification：“找出状态栏广告的主人”"><span class="nav-number">1.6.</span> <span class="nav-text">查看Notification：“找出状态栏广告的主人”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debug相关的命令"><span class="nav-number">2.</span> <span class="nav-text">debug相关的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤log篇"><span class="nav-number">2.1.</span> <span class="nav-text">过滤log篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#只查看某个TAG的某个priority的log："><span class="nav-number">2.1.1.</span> <span class="nav-text">只查看某个TAG的某个priority的log：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只显示Error级别的log："><span class="nav-number">2.1.2.</span> <span class="nav-text">只显示Error级别的log：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接看Exception的命令："><span class="nav-number">2.1.3.</span> <span class="nav-text">直接看Exception的命令：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logcat时可以查看某个tag的所有log"><span class="nav-number">2.1.4.</span> <span class="nav-text">logcat时可以查看某个tag的所有log:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开某个class的log："><span class="nav-number">2.1.5.</span> <span class="nav-text">打开某个class的log：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抓取kernel-log："><span class="nav-number">2.1.6.</span> <span class="nav-text">抓取kernel log：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制让进程gc"><span class="nav-number">2.2.</span> <span class="nav-text">强制让进程gc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制生成trace"><span class="nav-number">2.3.</span> <span class="nav-text">强制生成trace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制生成进程的内存镜像"><span class="nav-number">2.4.</span> <span class="nav-text">强制生成进程的内存镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打印调用顺序"><span class="nav-number">2.5.</span> <span class="nav-text">打印调用顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top命令"><span class="nav-number">2.6.</span> <span class="nav-text">top命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软重新启动"><span class="nav-number">2.7.</span> <span class="nav-text">软重新启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#monkey-test的命令"><span class="nav-number">2.8.</span> <span class="nav-text">monkey test的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看cpu频率"><span class="nav-number">2.9.</span> <span class="nav-text">查看cpu频率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开CPU-loading-log"><span class="nav-number">2.10.</span> <span class="nav-text">打开CPU loading log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终端输入play-pause事件模拟按键"><span class="nav-number">2.11.</span> <span class="nav-text">终端输入play pause事件模拟按键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系列核心命令"><span class="nav-number">3.</span> <span class="nav-text">系列核心命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟输入事件"><span class="nav-number">3.1.</span> <span class="nav-text">模拟输入事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟启动activity"><span class="nav-number">3.2.</span> <span class="nav-text">模拟启动activity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#得到设置的settings数据库键值"><span class="nav-number">3.3.</span> <span class="nav-text">得到设置的settings数据库键值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改数据库的键值"><span class="nav-number">3.3.1.</span> <span class="nav-text">修改数据库的键值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#得到数据库的键值"><span class="nav-number">3.3.2.</span> <span class="nav-text">得到数据库的键值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看Service信息"><span class="nav-number">3.4.</span> <span class="nav-text">查看Service信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看Service列表"><span class="nav-number">3.4.1.</span> <span class="nav-text">查看Service列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查Service是否存在"><span class="nav-number">3.4.2.</span> <span class="nav-text">检查Service是否存在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Service"><span class="nav-number">3.4.3.</span> <span class="nav-text">使用Service</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手机屏幕相关设置-wm命令"><span class="nav-number">3.5.</span> <span class="nav-text">手机屏幕相关设置-wm命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#wm-overscan-reset-LEFT-TOP-RIGHT-BOTTOM"><span class="nav-number">3.5.1.</span> <span class="nav-text">wm overscan [reset|LEFT,TOP,RIGHT,BOTTOM]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wm-size-return-or-override-display-size"><span class="nav-number">3.5.2.</span> <span class="nav-text">wm size: return or override display size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wm-density-override-display-density"><span class="nav-number">3.5.3.</span> <span class="nav-text">wm density: override display density</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#svc命令"><span class="nav-number">3.6.</span> <span class="nav-text">svc命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Turn-on-off-Wi-Fi"><span class="nav-number">3.6.1.</span> <span class="nav-text">Turn on/off Wi-Fi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Turn-on-off-mobile-data"><span class="nav-number">3.6.2.</span> <span class="nav-text">Turn on/off mobile data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手机重启"><span class="nav-number">3.6.3.</span> <span class="nav-text">手机重启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手机关机"><span class="nav-number">3.6.4.</span> <span class="nav-text">手机关机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pm-命令大全"><span class="nav-number">3.7.</span> <span class="nav-text">pm 命令大全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看当前安装的所有apk"><span class="nav-number">3.7.1.</span> <span class="nav-text">查看当前安装的所有apk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看包名和文件名对应表"><span class="nav-number">3.7.2.</span> <span class="nav-text">查看包名和文件名对应表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看disable-packagename"><span class="nav-number">3.7.3.</span> <span class="nav-text">查看disable packagename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看enable-packagename"><span class="nav-number">3.7.4.</span> <span class="nav-text">查看enable packagename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看system-app-packagename"><span class="nav-number">3.7.5.</span> <span class="nav-text">查看system app packagename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看第三方app-packagename"><span class="nav-number">3.7.6.</span> <span class="nav-text">查看第三方app packagename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">3.7.7.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#am-命令大全"><span class="nav-number">3.8.</span> <span class="nav-text">am 命令大全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#强制dump某个进程的内存镜像"><span class="nav-number">3.8.1.</span> <span class="nav-text">强制dump某个进程的内存镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dalvik’s-sampling-profiler-定时抓取java-call-stack"><span class="nav-number">3.8.2.</span> <span class="nav-text">Dalvik’s sampling profiler 定时抓取java call stack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-all-of-the-activity-stacks-and-their-sizes"><span class="nav-number">3.8.3.</span> <span class="nav-text">List all of the activity stacks and their sizes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Display-the-information-about-activity-stack"><span class="nav-number">3.8.4.</span> <span class="nav-text">Display the information about activity stack</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dumpsys相关命令"><span class="nav-number">3.9.</span> <span class="nav-text">dumpsys相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看activity的provider信息"><span class="nav-number">3.9.1.</span> <span class="nav-text">查看activity的provider信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看provider的Connections，谁在连接数据库"><span class="nav-number">3.9.2.</span> <span class="nav-text">查看provider的Connections，谁在连接数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看手机disk状态"><span class="nav-number">3.9.3.</span> <span class="nav-text">查看手机disk状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Get-the-list-of-services-available"><span class="nav-number">3.9.4.</span> <span class="nav-text">Get the list of services available</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看可用的SERVICE列表"><span class="nav-number">3.9.5.</span> <span class="nav-text">查看可用的SERVICE列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看某个应用的内存使用信息"><span class="nav-number">3.9.6.</span> <span class="nav-text">查看某个应用的内存使用信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看TaskStack"><span class="nav-number">3.9.7.</span> <span class="nav-text">查看TaskStack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看Alarm列表"><span class="nav-number">3.9.8.</span> <span class="nav-text">查看Alarm列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看surface-flinger"><span class="nav-number">3.9.9.</span> <span class="nav-text">查看surface flinger</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dumpsys其他一些信息"><span class="nav-number">3.9.10.</span> <span class="nav-text">dumpsys其他一些信息</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一颗豆豆</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
