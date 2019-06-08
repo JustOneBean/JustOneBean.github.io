@@ -64,7 +64,7 @@
 
 
 
-  <meta name="keywords" content="git,设置,">
+  <meta name="keywords" content="Windows10,Robocopy,">
 
 
 
@@ -75,18 +75,18 @@
 
 
 
-<meta name="description" content="初次运行 Git 前的配置12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
-<meta name="keywords" content="git,设置">
+<meta name="description" content="当用户需要将文件或文件夹复制到另一个驱动器时，通常都使用（GUI 中）标准的选择、复制和粘贴操作。虽然默认的批量文件复制和移动功能在 Windows 10 操作系统中已经历经过微软多次优化，已经能够工作得很好，但当尝试传输大批量文件（特别是大量小文件）时，还是需要很长时间，速度就成了一个瓶颈。">
+<meta name="keywords" content="Windows10,Robocopy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git使用配置">
-<meta property="og:url" content="http://justonebean.github.io/2018/03/17/git使用笔记/index.html">
+<meta property="og:title" content="Windows10使用Robocopy多线程功能加速中的文件复制">
+<meta property="og:url" content="http://justonebean.github.io/2019/04/18/Windows10使用Robocopy多线程功能加速中的文件复制/index.html">
 <meta property="og:site_name" content="JustOneBean">
-<meta property="og:description" content="初次运行 Git 前的配置12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
+<meta property="og:description" content="当用户需要将文件或文件夹复制到另一个驱动器时，通常都使用（GUI 中）标准的选择、复制和粘贴操作。虽然默认的批量文件复制和移动功能在 Windows 10 操作系统中已经历经过微软多次优化，已经能够工作得很好，但当尝试传输大批量文件（特别是大量小文件）时，还是需要很长时间，速度就成了一个瓶颈。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T06:03:42.058Z">
+<meta property="og:updated_time" content="2019-06-08T08:14:51.991Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git使用配置">
-<meta name="twitter:description" content="初次运行 Git 前的配置12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
+<meta name="twitter:title" content="Windows10使用Robocopy多线程功能加速中的文件复制">
+<meta name="twitter:description" content="当用户需要将文件或文件夹复制到另一个驱动器时，通常都使用（GUI 中）标准的选择、复制和粘贴操作。虽然默认的批量文件复制和移动功能在 Windows 10 操作系统中已经历经过微软多次优化，已经能够工作得很好，但当尝试传输大批量文件（特别是大量小文件）时，还是需要很长时间，速度就成了一个瓶颈。">
 
 
 
@@ -116,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://justonebean.github.io/2018/03/17/git使用笔记/">
+  <link rel="canonical" href="http://justonebean.github.io/2019/04/18/Windows10使用Robocopy多线程功能加速中的文件复制/">
 
 
 
 
 
-  <title>Git使用配置 | JustOneBean</title>
+  <title>Windows10使用Robocopy多线程功能加速中的文件复制 | JustOneBean</title>
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://justonebean.github.io/2018/03/17/git使用笔记/">
+    <link itemprop="mainEntityOfPage" href="http://justonebean.github.io/2019/04/18/Windows10使用Robocopy多线程功能加速中的文件复制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="一颗豆豆">
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git使用配置</h1>
+          <h1 class="post-title" itemprop="name headline">Windows10使用Robocopy多线程功能加速中的文件复制</h1>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T00:00:00+08:00">
-                2018-03-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T00:00:00+08:00">
+                2019-04-18
               </time>
             
 
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/Windows10/" itemprop="url" rel="index">
+                    <span itemprop="name">Windows10</span>
                   </a>
                 </span>
 
@@ -380,13 +380,20 @@
       
 
       
-        <h2 id="初次运行-Git-前的配置"><a href="#初次运行-Git-前的配置" class="headerlink" title="初次运行 Git 前的配置"></a>初次运行 Git 前的配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global user.name "Your Name"</span><br><span class="line"><span class="meta">$</span> git config --global user.email "email@example.com"</span><br></pre></td></tr></table></figure>
- <a id="more"></a>
-<p><strong>注意git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址</strong></p>
-<h2 id="创建SSH-Key"><a href="#创建SSH-Key" class="headerlink" title="创建SSH Key"></a>创建SSH Key</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-keygen -t rsa -C "youremail@example.com"</span><br></pre></td></tr></table></figure>
-<p>你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。<br>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
-<h2 id="测试是否可以正常连接"><a href="#测试是否可以正常连接" class="headerlink" title="测试是否可以正常连接"></a>测试是否可以正常连接</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@git.coding.net  #Coding</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com  #Github</span><br></pre></td></tr></table></figure>
+        <p>当用户需要将文件或文件夹复制到另一个驱动器时，通常都使用（GUI 中）标准的选择、复制和粘贴操作。虽然默认的批量文件复制和移动功能在 Windows 10 操作系统中已经历经过微软多次优化，已经能够工作得很好，但当尝试传输大批量文件（特别是大量小文件）时，还是需要很长时间，速度就成了一个瓶颈。<br> <a id="more"></a><br>此时，许多精通技术的 Windows 用户都会使用 <strong>Robocopy</strong>（Robust File Copy，强大的文件复制），这是一个内置于 Windows 10 中的命令行工具，它提供了更多功能来帮助用户更快地将数据移动到不同的位置。</p>
+<p><strong>Robocopy</strong> 最为特殊也经常被忽略的是其支持多线程的能力，允许我们同时复制多个文件，而不像在<strong>文件管理器</strong>中复制文件时只能一次一个（移动多个文件时也只是列队之后一个一个移动）。</p>
+<p>下面介绍在 Windows 10 中如何使用 <strong>Robocopy</strong> 的多线程副本功能来加快文件和文件夹的复制、移动传输过程。</p>
+<h2 id="如何使用Robocopy多线程特性"><a href="#如何使用Robocopy多线程特性" class="headerlink" title="如何使用Robocopy多线程特性"></a>如何使用Robocopy多线程特性</h2><p>如果你要将 Windows 10 中的大量文件和文件夹复制到另一个驱动器，可以仿照如下步骤来实现 <strong>Robocopy</strong> 多线程功能以达到超快的数据复制速度：</p>
+<h3 id="以管理员权限打开「命令提示符」"><a href="#以管理员权限打开「命令提示符」" class="headerlink" title="以管理员权限打开「命令提示符」"></a>以管理员权限打开「命令提示符」</h3><h3 id="执行类似如下命令进行多线程复制"><a href="#执行类似如下命令进行多线程复制" class="headerlink" title="执行类似如下命令进行多线程复制"></a>执行类似如下命令进行多线程复制</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROBOCOPY source destination [file [file]...] [options]</span><br></pre></td></tr></table></figure>
+<p><strong>source</strong> :  源目录(驱动器:\路径或\服务器\共享\路径)。<br><strong>destination</strong> :  目标目录(驱动器:\路径或\服务器\共享\路径)。<br><strong>file</strong> :  要复制的文件(名称/通配符: 默认为 “<em>.</em>“)。</p>
+<p>例如：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">robocopy D:\Pictures\ E:\收藏\Pictures /S /ZB /R:<span class="number">5</span> /W:<span class="number">5</span> /V /MT:<span class="number">32</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：请自行将源路径和目标路径替换成你自己的。</p>
+<h2 id="Robocopy命令行用法解释"><a href="#Robocopy命令行用法解释" class="headerlink" title="Robocopy命令行用法解释"></a>Robocopy命令行用法解释</h2><p>robocopy 的功能非常强大，因此其命令行开关也非常之多，下面我们只列出能够可靠、快速复制文件的常用开关。</p>
+<blockquote>
+<p><strong>/S</strong>:  复制子目录，但不复制空的子目录。<br><strong>/E</strong>:  复制子目录，包括空的子目录。<br><strong>/LEV:n</strong>:  仅复制源目录树的前 n 层。<br><strong>/Z</strong>:  在可重新启动模式下复制文件。<br><strong>/B</strong>:  在备份模式下复制文件。<br><strong>/ZB</strong>:  使用可重新启动模式；如果拒绝访问，请使用备份模式。<br><strong>/J</strong>:   复制时使用未缓冲的 I/O (推荐在复制大文件时使用)。<br><strong>/R:n</strong>:  失败副本的重试次数: 默认为 1 百万。<br><strong>/W:n</strong>:  两次重试间的等待时间: 默认为 30 秒。<br><strong>/TBD</strong>:   等待定义共享名称(重试错误 67)。<br><strong>/NP</strong>:   无进度 – 不显示已复制的百分比。<br><strong>/V</strong>:  生成详细输出，同时显示跳过的文件。<br><strong>/MOV</strong>:   移动文件(复制后从源中删除)。<br><strong>/MOVE</strong>:  移动文件和目录(复制后从源中删除)。<br><strong>/MT:32</strong>:  使用 n 个线程进行多线程复制(默认值为 8)。必须至少为 1，但不得大于 128。</p>
+</blockquote>
+<p>上述命令中最为重要的开关就是 /MT，它让 robocopy 能够以多线程模式进行复制传输。如果你没为 /MT设置数字，那么默认数字是 8，这意味着 Robocopy 将会同时复制 8 个文件。我个人推荐使用 32 个线程，虽然可开的线程可以更多，但数字越大，所使用的系统资源和带宽就越多。</p>
 
       
     </div>
@@ -407,7 +414,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://justonebean.github.io/2018/03/17/git使用笔记/" title="Git使用配置">http://justonebean.github.io/2018/03/17/git使用笔记/</a>
+    <a href="http://justonebean.github.io/2019/04/18/Windows10使用Robocopy多线程功能加速中的文件复制/" title="Windows10使用Robocopy多线程功能加速中的文件复制">http://justonebean.github.io/2019/04/18/Windows10使用Robocopy多线程功能加速中的文件复制/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -422,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git-设置/" rel="tag"><i class="fa fa-tag"></i> git,设置</a>
+            <a href="/tags/Windows10-Robocopy/" rel="tag"><i class="fa fa-tag"></i> Windows10,Robocopy</a>
           
         </div>
       
@@ -435,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/17/Android的adb调试命令集合/" rel="next" title="Android的adb调试命令集合">
-                <i class="fa fa-chevron-left"></i> Android的adb调试命令集合
+              <a href="/2019/04/17/Ubuntu UFW 防火墙设置/" rel="next" title="Ubuntu UFW 防火墙设置">
+                <i class="fa fa-chevron-left"></i> Ubuntu UFW 防火墙设置
               </a>
             
           </div>
@@ -445,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/19/Android拍照，适配到Android7.0/" rel="prev" title="Android拍照，适配到Android7.0">
-                Android拍照，适配到Android7.0 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/28/如何防止QQ轻聊版强制升级TIM/" rel="prev" title="如何防止QQ轻聊版强制升级TIM">
+                如何防止QQ轻聊版强制升级TIM <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -537,7 +544,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -548,7 +555,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -597,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初次运行-Git-前的配置"><span class="nav-number">1.</span> <span class="nav-text">初次运行 Git 前的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建SSH-Key"><span class="nav-number">2.</span> <span class="nav-text">创建SSH Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否可以正常连接"><span class="nav-number">3.</span> <span class="nav-text">测试是否可以正常连接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用Robocopy多线程特性"><span class="nav-number">1.</span> <span class="nav-text">如何使用Robocopy多线程特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以管理员权限打开「命令提示符」"><span class="nav-number">1.1.</span> <span class="nav-text">以管理员权限打开「命令提示符」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行类似如下命令进行多线程复制"><span class="nav-number">1.2.</span> <span class="nav-text">执行类似如下命令进行多线程复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Robocopy命令行用法解释"><span class="nav-number">2.</span> <span class="nav-text">Robocopy命令行用法解释</span></a></li></ol></div>
             
 
           </div>
