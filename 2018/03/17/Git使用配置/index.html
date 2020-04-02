@@ -75,18 +75,18 @@
 
 
 
-<meta name="description" content="初次运行 Git 前的配置12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
+<meta name="description" content="Shadowsocks2.8.2 启动报 undefined symbol: EVP_CIPHER_CTX_cleanup 错误12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
 <meta name="keywords" content="git,设置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git使用笔记">
 <meta property="og:url" content="http://justonebean.github.io/2018/03/17/Git使用配置/index.html">
 <meta property="og:site_name" content="JustOneBean">
-<meta property="og:description" content="初次运行 Git 前的配置12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
+<meta property="og:description" content="Shadowsocks2.8.2 启动报 undefined symbol: EVP_CIPHER_CTX_cleanup 错误12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-02T04:46:32.278Z">
+<meta property="og:updated_time" content="2019-10-02T07:52:44.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用笔记">
-<meta name="twitter:description" content="初次运行 Git 前的配置12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
+<meta name="twitter:description" content="Shadowsocks2.8.2 启动报 undefined symbol: EVP_CIPHER_CTX_cleanup 错误12$ git config --global user.name &quot;Your Name&quot;$ git config --global user.email &quot;email@example.com&quot;">
 
 
 
@@ -294,7 +294,7 @@
     <link itemprop="mainEntityOfPage" href="http://justonebean.github.io/2018/03/17/Git使用配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="一颗豆豆">
+      <meta itemprop="name" content="JustOneBean">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -380,13 +380,15 @@
       
 
       
-        <h2 id="初次运行-Git-前的配置"><a href="#初次运行-Git-前的配置" class="headerlink" title="初次运行 Git 前的配置"></a>初次运行 Git 前的配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global user.name "Your Name"</span><br><span class="line"><span class="meta">$</span> git config --global user.email "email@example.com"</span><br></pre></td></tr></table></figure>
+        <h2 id="Shadowsocks2-8-2-启动报-undefined-symbol-EVP-CIPHER-CTX-cleanup-错误"><a href="#Shadowsocks2-8-2-启动报-undefined-symbol-EVP-CIPHER-CTX-cleanup-错误" class="headerlink" title="Shadowsocks2.8.2 启动报 undefined symbol: EVP_CIPHER_CTX_cleanup 错误"></a>Shadowsocks2.8.2 启动报 undefined symbol: EVP_CIPHER_CTX_cleanup 错误</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global user.name "Your Name"</span><br><span class="line"><span class="meta">$</span> git config --global user.email "email@example.com"</span><br></pre></td></tr></table></figure>
  <a id="more"></a>
 <p><strong>注意git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址</strong></p>
 <h2 id="创建SSH-Key"><a href="#创建SSH-Key" class="headerlink" title="创建SSH Key"></a>创建SSH Key</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-keygen -t rsa -C "youremail@example.com"</span><br></pre></td></tr></table></figure>
 <p>你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。<br>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
 <h2 id="测试是否可以正常连接"><a href="#测试是否可以正常连接" class="headerlink" title="测试是否可以正常连接"></a>测试是否可以正常连接</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@git.coding.net  #Coding</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com  #Github</span><br></pre></td></tr></table></figure>
+<h2 id="设置Git代理"><a href="#设置Git代理" class="headerlink" title="设置Git代理"></a>设置Git代理</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<h2 id="取消Git代理"><a href="#取消Git代理" class="headerlink" title="取消Git代理"></a>取消Git代理</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -403,7 +405,7 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    一颗豆豆
+    JustOneBean
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -435,18 +437,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/17/Android的adb调试命令集合/" rel="next" title="Android的adb调试命令集合">
-                <i class="fa fa-chevron-left"></i> Android的adb调试命令集合
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/19/Android拍照，适配到Android7.0/" rel="prev" title="Android拍照，适配到Android7.0">
-                Android拍照，适配到Android7.0 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/17/Android的adb调试命令集合/" rel="prev" title="Android的adb调试命令集合">
+                Android的adb调试命令集合 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,9 +511,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="一颗豆豆">
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="JustOneBean">
             
-              <p class="site-author-name" itemprop="name">一颗豆豆</p>
+              <p class="site-author-name" itemprop="name">JustOneBean</p>
               <p class="site-description motion-element" itemprop="description">业精于勤，荒于嬉；行成于思，毁于随。</p>
           </div>
 
@@ -526,7 +524,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -537,7 +535,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -548,7 +546,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -591,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初次运行-Git-前的配置"><span class="nav-number">1.</span> <span class="nav-text">初次运行 Git 前的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建SSH-Key"><span class="nav-number">2.</span> <span class="nav-text">创建SSH Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否可以正常连接"><span class="nav-number">3.</span> <span class="nav-text">测试是否可以正常连接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shadowsocks2-8-2-启动报-undefined-symbol-EVP-CIPHER-CTX-cleanup-错误"><span class="nav-number">1.</span> <span class="nav-text">Shadowsocks2.8.2 启动报 undefined symbol: EVP_CIPHER_CTX_cleanup 错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建SSH-Key"><span class="nav-number">2.</span> <span class="nav-text">创建SSH Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否可以正常连接"><span class="nav-number">3.</span> <span class="nav-text">测试是否可以正常连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Git代理"><span class="nav-number">4.</span> <span class="nav-text">设置Git代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取消Git代理"><span class="nav-number">5.</span> <span class="nav-text">取消Git代理</span></a></li></ol></div>
             
 
           </div>
@@ -611,11 +609,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">一颗豆豆</span>
+  <span class="author" itemprop="copyrightHolder">JustOneBean</span>
 
   
 </div>
